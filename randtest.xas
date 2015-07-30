@@ -1,0 +1,14 @@
+  loadi 3, r1
+  loadi 0, r2
+loop:
+  inp   r1, r0
+  equ   r0, r2
+  br oops
+  mov   r0, r2
+  jr loop
+oops:
+  loadi 33, r0
+  out r0
+  loadi 10, r0
+
+.literal 0

@@ -1,0 +1,20 @@
+# Targets & general dependencies
+IMAGE=xos
+KERNEL=kernel.xo
+PROCESS=echo.xo 
+PROCESSES=$(PROCESS) 
+ 
+# compilers, linkers, utilities, and flags
+XAS = ./xas
+
+# implicit rule to build .xo from .xas files
+.SUFFIXES: .xas .xo
+.xas.xo: $(HEADERS)
+	$(XAS) $< $@ 
+
+# explicit rules
+$(IMAGE): $(KERNEL) $(PROCESSES)
+	./xmkos xos $(KERNEL) $(PROCESSES)
+
+clean:
+	rm -f $(IMAGE) $(KERNEL) $(PROCESS)
